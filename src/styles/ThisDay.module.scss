@@ -1,0 +1,58 @@
+@import './Variables.scss';
+.this__day {
+  height: 300px;
+  width: 400px;
+  border-radius: 20px;
+  background-color: var(#{--components-background-default});
+  box-shadow: $box-shadow;
+}
+.today__title {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 30px;
+  color: var(#{--text-color-default});
+}
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+
+  svg {
+    height: 119px;
+    margin-top: 46px;
+    width: 119px;
+    margin-right: 20px;
+    border-radius: 0px;
+  }
+}
+
+.day__temp {
+  height: 117px;
+  width: 160px;
+  font-family: Montserrat;
+  font-size: 96px;
+  font-weight: 500;
+  line-height: 117px;
+  color: #4793ff;
+}
+
+.block__bottom {
+  padding-bottom: 80px;
+
+  height: 300px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 30px;
+  padding-left: 20px;
+
+  color: #939cb0;
+}
+.day__time {
+  margin-top: 31px;
+  margin-bottom: 14px;
+}

@@ -1,0 +1,16 @@
+@import '~normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 20px;
+  background-color: var(#{(--body-background-default)});
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
