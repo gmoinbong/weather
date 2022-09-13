@@ -1,50 +1,72 @@
-import React from 'react';
-import Select from 'react-select';
+import React, { useEffect, useState } from 'react';
 import { Item } from './ThisDayInfo';
 import ThisDayInfoItem from './ThisDayInfoItem';
 import { GlobalSvgSelector } from '../assets/GlobalSvgSelector';
+import { useCustomSelector } from '../hooks/store';
+import { selectCurrentWeatherData } from '../store/types/selectors';
 import st from '../styles/PopUp.module.scss';
 
-interface Props { }
+interface Props {
+    handleClose: () => void
+}
 
-export const Popup = ({ }: Props) => {
+export const Popup = ({ handleClose }: Props) => {
+    const [time, setTime] = useState(new Date().toLocaleTimeString());
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTime(new Date().toLocaleTimeString());
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
+
+    const { weatherOrigin } = useCustomSelector(selectCurrentWeatherData)
+    const feelsLike = `${Math.floor(weatherOrigin.main.temp)}° - ощущается как ${Math.floor(weatherOrigin.main.feels_like)}° `
+    const pressure = `${weatherOrigin.main.pressure} мм ртутного столба`
+    const dayTemp = `${Math.floor(weatherOrigin.main.temp)}°`
+    const wind = `${weatherOrigin.wind.speed} м/с`
+    const humidity = `Влажность ${weatherOrigin.main.humidity}%`
+
+
     const items = [
         {
             icon_id: 'temp',
             name: 'Температура',
-            value: '20° - ощущается как 17°',
+            value: feelsLike,
         },
         {
             icon_id: 'pressure',
             name: 'Давление',
-            value: '765 мм ртутного столба - нормальное',
+            value: pressure,
         },
         {
             icon_id: 'precipitation',
             name: 'Осадки',
-            value: 'Без осадков',
+            value: humidity,
         },
         {
             icon_id: 'wind',
             name: 'Ветер',
-            value: '3 м/с юго-запад - легкий ветер',
+            value: wind,
         },
     ];
+
+
+
     return (
         <>
-            <div className={st.blur}></div>
+            <div className={st.blur}> </div>
             <div className={st.popup}>
                 <div className={st.day}>
-                    <div className={st.day__temp}>20°</div>
+                    <div className={st.day__temp}>{dayTemp}</div>
                     <div className={st.day__name}>Среда</div>
                     <div className={st.img}>
                         <GlobalSvgSelector id="sun" />
                     </div>
                     <div className={st.day__time}>
-                        Время: <span>21:54</span>
+                        Время: <span>{time}</span>
                     </div>
                     <div className={st.day__city}>
-                        Время: <span>Санкт-Петербург</span>
+                        Город: <span>{weatherOrigin.name}</span>
                     </div>
                 </div>
                 <div className={st.this__day_info_items}>
@@ -52,10 +74,11 @@ export const Popup = ({ }: Props) => {
                         <ThisDayInfoItem key={item.icon_id} item={item} />
                     ))}
                 </div>
-                <div className={st.close}>
-                    <GlobalSvgSelector id="close" />
+                <div className={st.close}  >
+                    <GlobalSvgSelector id="close" onClick={handleClose} />
                 </div>
             </div>
+
         </>
     );
 };

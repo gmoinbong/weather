@@ -1,21 +1,34 @@
 import React from 'react'
 import Days from '../components/Days'
 import Header from '../components/Header'
-import { Popup } from '../components/PopUp'
 import ThisDay from '../components/ThisDay'
 import ThisDayInfo from '../components/ThisDayInfo'
+import { useCustomDispatch, useCustomSelector } from '../hooks/store'
 import st from '../styles/Home.module.scss'
+import { fetchCurrentWeather } from '../store/thunks/fetchCurrentWeather'
+import { useEffect } from 'react'
+import { selectCurrentWeatherData } from '../store/types/selectors'
+
 type Props = {
 
 }
 
 const Home = (props: Props) => {
+
+
+    const dispatch = useCustomDispatch()
+    const { weatherOrigin } = useCustomSelector(selectCurrentWeatherData)
+
+    useEffect(() => {
+        dispatch(fetchCurrentWeather('Hlukhiv'))
+    }, [])
+
     return (
         <div className='home'>
             <Header />
             <div className={st.wrapper}>
-                <ThisDay />
-                <ThisDayInfo />
+                <ThisDay weather={weatherOrigin} />
+                <ThisDayInfo weatherOrigin={weatherOrigin} />
             </div>
             <div className={st.day__wrapper}></div>
             <Days />

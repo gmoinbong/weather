@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { GlobalSvgSelector } from '../assets/GlobalSvgSelector'
 import st from '../styles/Header.module.scss'
 import Select from 'react-select'
 import { useTheme } from '../hooks/useTheme'
 import { Theme } from '../context/ThemeContext'
+import { useCustomSelector } from '../hooks/store'
+import { selectCurrentWeatherData } from '../store/types/selectors'
 
 function Header() {
+    const { weatherOrigin } = useCustomSelector(selectCurrentWeatherData)
+    console.log(weatherOrigin.name);
+
     const theme = useTheme()
     const options = [
         { value: 'city-1', label: 'Chernyhiv' },
@@ -26,8 +31,13 @@ function Header() {
 
         singleValue: (styles: any) => ({
             ...styles,
-            color: theme.theme === Theme.DARK ? '#FFFFFF' : '#000000'
-        })
+            color: theme.theme === Theme.DARK ? '#4793ff' : '#000000'
+        }),
+        menuList: (styles: any) => ({
+            backgroundColor: theme.theme === Theme.DARK ? '#4f4f4f' : 'rgba(71, 147, 255, 0.2)'
+        }),
+
+
     }
 
     function changeTheme() {
@@ -47,7 +57,10 @@ function Header() {
                             <GlobalSvgSelector id={'change-theme'} />
                         </div>
                         <div className={st.svg}>
-                            <Select defaultValue={{ label: 'Chernyhiv' }} styles={colourStyles} options={options} />
+                            <Select defaultValue={{ label: weatherOrigin.name }}
+                                styles={colourStyles}
+                                options={options}
+                            />
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,11 @@
 import React from 'react'
 
 type Props = {
-    id: string
+    id: unknown
+    onClick?: () => void
 }
 
-export const GlobalSvgSelector = ({ id }: Props) => {
+export const GlobalSvgSelector = ({ id, onClick }: Props) => {
     switch (id) {
         case 'header-logo':
             return (
@@ -49,7 +50,7 @@ export const GlobalSvgSelector = ({ id }: Props) => {
                     />
                 </svg>
             );
-        case 'change-theme':
+        case '<change-theme></change-theme>':
             return (
                 <svg
                     width="35"
