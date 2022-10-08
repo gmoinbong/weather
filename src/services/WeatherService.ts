@@ -1,5 +1,5 @@
-import axios, { AxiosResponse } from "axios";
-import api from "../axios";
+import { AxiosResponse } from "axios";
+import api from "../axios/weatherAPI";
 import { Weather } from "../store/types/types";
 
 

@@ -7,10 +7,10 @@ import { selectCurrentWeatherData } from '../store/types/selectors';
 import st from '../styles/PopUp.module.scss';
 
 interface Props {
-    handleClose: () => void
+    togglePopUp: () => void
 }
 
-export const Popup = ({ handleClose }: Props) => {
+export const Popup = ({ togglePopUp }: Props) => {
     const [time, setTime] = useState(new Date().toLocaleTimeString());
     useEffect(() => {
         const interval = setInterval(() => {
@@ -20,6 +20,7 @@ export const Popup = ({ handleClose }: Props) => {
     }, []);
 
     const { weatherOrigin } = useCustomSelector(selectCurrentWeatherData)
+
     const feelsLike = `${Math.floor(weatherOrigin.main.temp)}° - ощущается как ${Math.floor(weatherOrigin.main.feels_like)}° `
     const pressure = `${weatherOrigin.main.pressure} мм ртутного столба`
     const dayTemp = `${Math.floor(weatherOrigin.main.temp)}°`
@@ -54,8 +55,7 @@ export const Popup = ({ handleClose }: Props) => {
 
     return (
         <>
-            <div className={st.blur}> </div>
-            <div className={st.popup}>
+            <div className={st.popup} onClick={event => event.stopPropagation}>
                 <div className={st.day}>
                     <div className={st.day__temp}>{dayTemp}</div>
                     <div className={st.day__name}>Среда</div>
@@ -75,7 +75,7 @@ export const Popup = ({ handleClose }: Props) => {
                     ))}
                 </div>
                 <div className={st.close}  >
-                    <GlobalSvgSelector id="close" onClick={handleClose} />
+                    <GlobalSvgSelector id="close" onClick={() => togglePopUp} />
                 </div>
             </div>
 

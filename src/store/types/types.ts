@@ -15,3 +15,12 @@ export type Weather = {
         main?: string
     }],
 }
+
+export interface Day {
+    day: any,
+    day_info: string,
+    icon_id: unknown,
+    temp_day: string,
+    temp_night: string,
+    info: string,
+}

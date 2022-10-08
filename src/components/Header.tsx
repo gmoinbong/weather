@@ -7,15 +7,13 @@ import { Theme } from '../context/ThemeContext'
 import { useCustomSelector } from '../hooks/store'
 import { selectCurrentWeatherData } from '../store/types/selectors'
 
+
+
 function Header() {
     const { weatherOrigin } = useCustomSelector(selectCurrentWeatherData)
-    console.log(weatherOrigin.name);
-
     const theme = useTheme()
     const options = [
-        { value: 'city-1', label: 'Chernyhiv' },
-        { value: 'city-2', label: 'Sumy' },
-        { value: 'city-3', label: 'Kyiv' }
+        { label: weatherOrigin.name }
     ]
 
     const colourStyles = {
@@ -40,11 +38,14 @@ function Header() {
 
     }
 
+
     function changeTheme() {
         theme.changeTheme(theme.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT)
     }
+    console.log(weatherOrigin.name);
 
     return (
+
         <header className={st.header}>
             <div className={st.wrapper}>
                 <div className={st.logo}>

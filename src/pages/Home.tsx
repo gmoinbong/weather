@@ -9,18 +9,13 @@ import { fetchCurrentWeather } from '../store/thunks/fetchCurrentWeather'
 import { useEffect } from 'react'
 import { selectCurrentWeatherData } from '../store/types/selectors'
 
-type Props = {
-
-}
-
-const Home = (props: Props) => {
 
 
+const Home = () => {
     const dispatch = useCustomDispatch()
     const { weatherOrigin } = useCustomSelector(selectCurrentWeatherData)
-
     useEffect(() => {
-        dispatch(fetchCurrentWeather('Hlukhiv'))
+        dispatch(fetchCurrentWeather('Kyiv'))
     }, [])
 
     return (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import st from '../styles/Days.module.scss'
 type Props = {}
 interface tab {
@@ -7,24 +7,32 @@ interface tab {
 
 }
 const Tab = (tab: Props) => {
+    const [isActive, setIsActive] = useState(false)
+
+    const toggleTab = () => {
+        setIsActive(!isActive)
+    }
+
     const tabs = [{
         value: 'На неделю'
     },
     {
-        value: ' На 10 дней'
+        value: ' На 14 дней'
     }]
 
 
     return (
         <div className={st.tabs}>
             <div className={st.tabs__wrapper}>
-                {tabs.map(tab =>
-                    <div className={st.tab}
-                        key={tab.value}>{tab.value}
-                    </div>)}
+                <button className={st.tab}>
+                    На неделю
+                </button>
+                <button className={st.tab}>
+                    На 14 дней
+                </button>
             </div>
-            <div className={st.cancel}>Отменить</div>
-        </div>)
+            <button className={st.cancel}>Отменить</button>
+        </div >)
 
 }
 

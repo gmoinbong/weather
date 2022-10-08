@@ -22,7 +22,7 @@ const initialState: currentWeather = {
             temp_min: 0,
             humidity: 87
         },
-        name: 'city',
+        name: 'Выбрать город',
         wind: {
             speed: 0
         },
@@ -64,4 +64,6 @@ export const currentWeatherSlice = createSlice({
         }
     }
 })
+
+
 export default currentWeatherSlice.reducer

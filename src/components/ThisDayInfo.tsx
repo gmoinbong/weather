@@ -23,6 +23,7 @@ function ThisDayInfo({ weatherOrigin }: Props) {
   const pressure = `${weatherOrigin.main.pressure} мм ртутного столба`
   const wind = `${weatherOrigin.wind.speed} м/с`
   const humidity = `Влажность ${weatherOrigin.main.humidity}%`
+
   const items = [
     {
       icon_id: 'temp',

@@ -1,7 +1,29 @@
-export const daysOfWeek = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
-export const months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня",
-    "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+import moment from 'moment';
 
-export const myDate = new Date('September 28, 2022 08:33:00');
-export const fullDate = "Сегодня: " + myDate.getDate() + " " + months[myDate.getMonth()] +
-    " " + myDate.getFullYear() + ", " + daysOfWeek[myDate.getDay()];
+export const iconSwitch = (icon: unknown) => {
+    switch (icon) {
+        case 'Rain':
+            return 'rain'
+        case 'Clouds':
+            return 'mainly_cloudy'
+        case 'Clear':
+            return 'sun'
+        default: return 'sun'
+    }
+}
+moment.updateLocale('en', {
+    weekdays: [
+        "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"
+    ],
+    months: [
+        "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня",
+        "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"
+    ]
+
+});
+export const day = (count: number) => {
+    return moment().add(count, 'days').format('dddd')
+}
+export const dayInfo = (count: number) => {
+    return moment().add(count, 'days').format('D MMMM')
+}

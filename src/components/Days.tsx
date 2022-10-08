@@ -1,104 +1,85 @@
 import React from 'react'
-import { daysOfWeek, months, myDate } from '../assets/constants/constants';
+
+import { day, dayInfo, iconSwitch } from '../assets/constants/constants';
 import { capitalizeFirstLetter } from '../assets/constants/functions';
 import { useCustomSelector } from '../hooks/store';
 import { selectCurrentWeatherData } from '../store/types/selectors';
+import { Day } from '../store/types/types';
 import st from '../styles/Days.module.scss'
 import Card from './Card';
 import Tab from './Tab';
 
 type Props = {}
 
-export interface Day {
-    day: any,
-    day_info: string,
-    icon_id: unknown,
-    temp_day: string,
-    temp_night: string,
-    info: string,
-}
-
-
 const Days = (props: Props) => {
-
     const { weatherOrigin } = useCustomSelector(selectCurrentWeatherData)
 
-    const tempDay = `${Math.floor(weatherOrigin.main.temp)}`
-    const tempNight = `${Math.floor(weatherOrigin.main.temp_min)}`
-    const infoToday = `${capitalizeFirstLetter(weatherOrigin.weather[0].description)}`
-    const today = myDate.getDate()
-    const thisMonth = months[myDate.getMonth()]
+    const tempDay = `${Math.floor(weatherOrigin.main.temp)}`                                        // Значение температуры днём
+    const tempNight = `${Math.floor(weatherOrigin.main.temp_min)}`                                   // Значение температуры ночью
+    const infoToday = `${capitalizeFirstLetter(weatherOrigin.weather[0].description)}`              // Информация на текущий день
+    const checkedTempDay = weatherOrigin.main.temp >= 0 ? `+${tempDay}` : `-${tempDay}`             // Проверенное значение температуры днём
+    const checkedTempNight = weatherOrigin.main.temp_min >= 0 ? `+${tempNight}` : `-${tempNight}`  // Проверенное значение температуры ночью
     const icon = weatherOrigin.weather[0].main
 
-    const iconSwitch = (icon: unknown) => {
-        switch (icon) {
-            case 'Rain':
-                return 'rain'
-            case 'Clouds':
-                return 'mainly_cloudy'
-            case 'Clear':
-                return 'sun'
-            default: return 'sun'
-        }
-    }
     const days: Day[] = [
         {
             day: 'Сегодня',
-            day_info: today + ' ' + thisMonth,
+            day_info: dayInfo(0),
             icon_id: iconSwitch(icon),
-            temp_day: weatherOrigin.main.temp >= 0 ? `+${tempDay}` : `-${tempDay}`,
-            temp_night: weatherOrigin.main.temp_min >= 0 ? `+${tempNight}` : `-${tempNight}`,
+            temp_day: checkedTempDay,
+            temp_night: checkedTempNight,
             info: infoToday,
         },
         {
             day: 'Завтра',
-            day_info: today >= 31 ? today - 30 + ' ' + months[myDate.getMonth() + 1] : today + 1 + ' ' + thisMonth,
+            day_info: dayInfo(1),
             icon_id: iconSwitch(icon),
-            temp_day: weatherOrigin.main.temp >= 0 ? `+${tempDay}` : `-${tempDay}`,
-            temp_night: weatherOrigin.main.temp_min >= 0 ? `+${tempNight}` : `-${tempNight}`,
+            temp_day: checkedTempDay,
+            temp_night: checkedTempNight,
             info: infoToday,
         },
         {
-            day: daysOfWeek[myDate.getDay()],
-            day_info: today >= 31 ? today - 30 + 1 + ' ' + months[myDate.getMonth() + 1] : today + 2 + ' ' + thisMonth,
+            day: day(2),
+            day_info: dayInfo(2),
             icon_id: iconSwitch(icon),
-            temp_day: weatherOrigin.main.temp >= 0 ? `+${tempDay}` : `-${tempDay}`,
-            temp_night: weatherOrigin.main.temp_min >= 0 ? `+${tempNight}` : `-${tempNight}`,
+            temp_day: checkedTempDay,
+            temp_night: checkedTempNight,
             info: infoToday,
         },
         {
-            day: 'Чт',
-            day_info: today >= 31 ? today - 30 + 2 + ' ' + months[myDate.getMonth() + 1] : today + 3 + ' ' + thisMonth,
+            day: day(3),
+            day_info: dayInfo(3),
             icon_id: iconSwitch(icon),
-            temp_day: weatherOrigin.main.temp >= 0 ? `+${tempDay}` : `-${tempDay}`,
-            temp_night: weatherOrigin.main.temp_min >= 0 ? `+${tempNight}` : `-${tempNight}`,
+            temp_day: checkedTempDay,
+            temp_night: checkedTempNight,
             info: infoToday,
         },
         {
-            day: 'Пт',
-            day_info: today >= 31 ? today - 30 + ' ' + months[myDate.getMonth() + 1] : today - 27 + ' ' + months[myDate.getMonth() + 1],
+            day: day(4),
+            day_info: dayInfo(4),
             icon_id: iconSwitch(icon),
-            temp_day: weatherOrigin.main.temp >= 0 ? `+${tempDay}` : `-${tempDay}`,
-            temp_night: weatherOrigin.main.temp_min >= 0 ? `+${tempNight}` : `-${tempNight}`,
+            temp_day: checkedTempDay,
+            temp_night: checkedTempNight,
             info: infoToday,
         },
         {
-            day: 'Сб',
-            day_info: today >= 31 ? today - 30 + ' ' + months[myDate.getMonth() + 1] : today - 26 + ' ' + months[myDate.getMonth() + 1],
+            day: day(5),
+            day_info: dayInfo(5),
             icon_id: iconSwitch(icon),
-            temp_day: weatherOrigin.main.temp >= 0 ? `+${tempDay}` : `-${tempDay}`,
-            temp_night: weatherOrigin.main.temp_min >= 0 ? `+${tempNight}` : `-${tempNight}`,
+            temp_day: checkedTempDay,
+            temp_night: checkedTempNight,
             info: infoToday,
         },
         {
-            day: 'Вс',
-            day_info: today >= 31 ? today - 30 + ' ' + months[myDate.getMonth() + 1] : today - 25 + ' ' + months[myDate.getMonth() + 1],
+            day: day(6),
+            day_info: dayInfo(6),
             icon_id: iconSwitch(icon),
-            temp_day: weatherOrigin.main.temp >= 0 ? `+${tempDay}` : `-${tempDay}`,
-            temp_night: weatherOrigin.main.temp_min >= 0 ? `+${tempNight}` : `-${tempNight}`,
+            temp_day: checkedTempDay,
+            temp_night: checkedTempNight,
             info: infoToday,
         },
     ];
+
     return (
         <>
             <Tab />
