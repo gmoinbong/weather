@@ -7,12 +7,12 @@ export const fetchCurrentWeather = (payload: string) => async (dispatch: AppDisp
         dispatch(currentWeatherSlice.actions.fetchCurrentWeather())
         const res = await WeatherService.getCurrentWeather(payload)
         if (res.status === 200) {
-            dispatch(currentWeatherSlice.actions.
-                fetchCurrentWeatherSuccess(res))
+            dispatch(currentWeatherSlice.actions
+                .fetchCurrentWeatherSuccess(res))
         }
         else {
-            dispatch(currentWeatherSlice.actions.
-                fetchCurrentWeatherError(res))
+            dispatch(currentWeatherSlice.actions
+                .fetchCurrentWeatherError(res))
         }
     } catch (error) {
         console.log('error');

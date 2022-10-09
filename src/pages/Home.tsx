@@ -12,15 +12,15 @@ import { selectCurrentWeatherData } from '../store/types/selectors'
 
 
 const Home = () => {
-    const dispatch = useCustomDispatch()
     const { weatherOrigin } = useCustomSelector(selectCurrentWeatherData)
+    const [searchCity, setSearchCity] = React.useState('Киев')
+    const dispatch = useCustomDispatch()
     useEffect(() => {
-        dispatch(fetchCurrentWeather('Kyiv'))
-    }, [])
-
+        dispatch(fetchCurrentWeather(searchCity))
+    }, [searchCity])
     return (
         <div className='home'>
-            <Header />
+            <Header searchCity={searchCity} setSearchCity={setSearchCity} />
             <div className={st.wrapper}>
                 <ThisDay weather={weatherOrigin} />
                 <ThisDayInfo weatherOrigin={weatherOrigin} />

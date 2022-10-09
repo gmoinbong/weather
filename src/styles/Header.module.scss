@@ -1,3 +1,8 @@
+$primary: #0077ff;
+$dark: #000;
+* {
+  box-sizing: border-box;
+}
 .header {
   width: 100%;
   height: 65px;
@@ -44,4 +49,63 @@
 }
 .change__theme {
   cursor: pointer;
+}
+
+.inp {
+  position: relative;
+  margin-left: 10px;
+  width: 100%;
+  max-width: 200px;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.focusbg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($dark, 0.05);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 80%;
+  border: 0;
+  font-family: inherit;
+  padding: 16px 15px 10px 8px;
+  height: 39 px;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: var(#{--components-background-default});
+  box-shadow: var(#{--card-shadow-default});
+  color: var(#{--text-color-default});
+  transition: all 0.15s ease;
+  &:hover {
+    background: var(#{--card-background-default});
+    box-shadow: var(#{--card-shadow-default});
+  }
+  &:not(:placeholder-shown),
+  .label {
+    color: rgba($dark, 0.5);
+    transform: translate3d(0, -12px, 0) scale(0.75);
+  }
+  &:focus,
+  .label,
+  .focus-bg {
+    background: rgba($dark, 0.05);
+    outline: none;
+    box-shadow: inset 0 -2px 0 $primary;
+
+    color: $primary;
+    transform: translate3d(0, -12px, 0) scale(0.75);
+
+    transform: scaleX(1);
+    transition: all 0.1s ease;
+  }
 }

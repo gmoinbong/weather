@@ -21,6 +21,35 @@ moment.updateLocale('en', {
     ]
 
 });
+
+export const options = [
+
+    { value: 'sav', label: 'Киев' },
+    { label: 'Львов' },
+    { label: 'Днепр' },
+    { label: 'Харьков' },
+    { label: 'Ивано-Франковск' },
+    { label: 'Тернополь' },
+    { label: 'Винница' },
+    { label: 'Ровно' },
+    { label: 'Одесса' },
+    { label: 'Запорожье' },
+    { label: 'Хмельницкий' },
+    { label: 'Луцк' },
+    { label: 'Полтава' },
+    { label: 'Житомир' },
+    { label: 'Кропивницкий	' },
+    { label: 'Черкассы' },
+    { label: 'Чернигов' },
+    { label: 'Черновцы' },
+    { label: 'Николаев' },
+    { label: 'Ужгород' },
+    { label: 'Сумы' },
+    { label: 'Херсон' },
+    { label: 'Донецк' },
+    { label: 'Луганск' },
+    { label: 'Симферополь' },
+]
 export const day = (count: number) => {
     return moment().add(count, 'days').format('dddd')
 }

@@ -15,7 +15,6 @@ export type Weather = {
         main?: string
     }],
 }
-
 export interface Day {
     day: any,
     day_info: string,
@@ -23,4 +22,8 @@ export interface Day {
     temp_day: string,
     temp_night: string,
     info: string,
+}
+export interface CityProps {
+    searchCity: string,
+    setSearchCity: React.Dispatch<React.SetStateAction<string>>
 }
