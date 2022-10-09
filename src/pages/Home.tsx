@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Days from '../components/Days'
 import Header from '../components/Header'
 import ThisDay from '../components/ThisDay'
@@ -6,21 +7,21 @@ import ThisDayInfo from '../components/ThisDayInfo'
 import { useCustomDispatch, useCustomSelector } from '../hooks/store'
 import st from '../styles/Home.module.scss'
 import { fetchCurrentWeather } from '../store/thunks/fetchCurrentWeather'
-import { useEffect } from 'react'
 import { selectCurrentWeatherData } from '../store/types/selectors'
 
 
 
 const Home = () => {
     const { weatherOrigin } = useCustomSelector(selectCurrentWeatherData)
-    const [searchCity, setSearchCity] = React.useState('Киев')
     const dispatch = useCustomDispatch()
-    useEffect(() => {
-        dispatch(fetchCurrentWeather(searchCity))
-    }, [searchCity])
+
+    const fetchWeather = (searchValue: string) => {
+        dispatch(fetchCurrentWeather(searchValue));
+    };
+
     return (
         <div className='home'>
-            <Header searchCity={searchCity} setSearchCity={setSearchCity} />
+            <Header onInputSubmit={fetchWeather} />
             <div className={st.wrapper}>
                 <ThisDay weather={weatherOrigin} />
                 <ThisDayInfo weatherOrigin={weatherOrigin} />

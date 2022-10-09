@@ -27,7 +27,7 @@ const initialState: currentWeather = {
             speed: 0
         },
         weather: [{
-            description: 'sdsd'
+            description: 'Описание'
         }],
 
     },

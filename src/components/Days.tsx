@@ -9,9 +9,8 @@ import st from '../styles/Days.module.scss'
 import Card from './Card';
 import Tab from './Tab';
 
-type Props = {}
 
-const Days = (props: Props) => {
+const Days = () => {
     const { weatherOrigin } = useCustomSelector(selectCurrentWeatherData)
 
     const tempDay = `${Math.floor(weatherOrigin.main.temp)}`                                        // Значение температуры днём
