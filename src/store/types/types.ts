@@ -22,6 +22,7 @@ export interface Day {
     temp_day: string,
     temp_night: string,
     info: string,
+    id: number
 }
 export interface CityProps {
     searchCity: string,

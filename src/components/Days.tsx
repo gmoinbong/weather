@@ -20,7 +20,7 @@ const Days = () => {
     const checkedTempNight = weatherOrigin.main.temp_min >= 0 ? `+${tempNight}` : `-${tempNight}`  // Проверенное значение температуры ночью
     const icon = weatherOrigin.weather[0].main
 
-    const days: Day[] = [
+    const daysSeven: Day[] = [
         {
             day: 'Сегодня',
             day_info: dayInfo(0),
@@ -28,6 +28,7 @@ const Days = () => {
             temp_day: checkedTempDay,
             temp_night: checkedTempNight,
             info: infoToday,
+            id: 0,
         },
         {
             day: 'Завтра',
@@ -36,6 +37,7 @@ const Days = () => {
             temp_day: checkedTempDay,
             temp_night: checkedTempNight,
             info: infoToday,
+            id: 1
         },
         {
             day: day(2),
@@ -44,6 +46,7 @@ const Days = () => {
             temp_day: checkedTempDay,
             temp_night: checkedTempNight,
             info: infoToday,
+            id: 2
         },
         {
             day: day(3),
@@ -52,6 +55,7 @@ const Days = () => {
             temp_day: checkedTempDay,
             temp_night: checkedTempNight,
             info: infoToday,
+            id: 3
         },
         {
             day: day(4),
@@ -60,6 +64,7 @@ const Days = () => {
             temp_day: checkedTempDay,
             temp_night: checkedTempNight,
             info: infoToday,
+            id: 4
         },
         {
             day: day(5),
@@ -68,6 +73,7 @@ const Days = () => {
             temp_day: checkedTempDay,
             temp_night: checkedTempNight,
             info: infoToday,
+            id: 5
         },
         {
             day: day(6),
@@ -76,14 +82,16 @@ const Days = () => {
             temp_day: checkedTempDay,
             temp_night: checkedTempNight,
             info: infoToday,
+            id: 6
         },
+
     ];
 
     return (
         <>
             <Tab />
-            <div className={st.days}>{days.map((day: Day) =>
-                <Card day={day} key={day.day} />
+            <div className={st.days}>{daysSeven.map((day: Day) =>
+                <Card id={day.id} dayName={dayInfo(day.id)} day={day} key={day.day} />
             )}</div>
         </>
     )

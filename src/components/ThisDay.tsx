@@ -8,13 +8,11 @@ interface Props {
 }
 
 function ThisDay({ weather }: Props) {
-
-    const [time, setTime] = useState(new Date().toLocaleTimeString());
-
+    const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
     useEffect(() => {
         const interval = setInterval(() => {
-            setTime(new Date().toLocaleTimeString());
-        }, 1000);
+            setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+        }, 900);
         return () => clearInterval(interval);
     }, []);
 

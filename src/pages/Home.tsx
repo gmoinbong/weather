@@ -10,7 +10,6 @@ import { fetchCurrentWeather } from '../store/thunks/fetchCurrentWeather'
 import { selectCurrentWeatherData } from '../store/types/selectors'
 
 
-
 const Home = () => {
     const { weatherOrigin } = useCustomSelector(selectCurrentWeatherData)
     const dispatch = useCustomDispatch()

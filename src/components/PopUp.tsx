@@ -1,32 +1,35 @@
 import React, { useEffect, useState } from 'react';
+import st from '../styles/PopUp.module.scss';
+import { useCustomSelector } from '../hooks/store';
+
 import { Item } from './ThisDayInfo';
 import ThisDayInfoItem from './ThisDayInfoItem';
 import { GlobalSvgSelector } from '../assets/GlobalSvgSelector';
-import { useCustomSelector } from '../hooks/store';
 import { selectCurrentWeatherData } from '../store/types/selectors';
-import st from '../styles/PopUp.module.scss';
 
 interface Props {
+    dayName: string
     togglePopUp: () => void
+    id: number
+
 }
 
-export const Popup = ({ togglePopUp }: Props) => {
-    const [time, setTime] = useState(new Date().toLocaleTimeString());
+export const Popup = ({ togglePopUp, dayName, id }: Props) => {
+    const { weatherOrigin } = useCustomSelector(selectCurrentWeatherData)
+
+    const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
     useEffect(() => {
         const interval = setInterval(() => {
-            setTime(new Date().toLocaleTimeString());
+            setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
         }, 1000);
         return () => clearInterval(interval);
     }, []);
-
-    const { weatherOrigin } = useCustomSelector(selectCurrentWeatherData)
 
     const feelsLike = `${Math.floor(weatherOrigin.main.temp)}° - ощущается как ${Math.floor(weatherOrigin.main.feels_like)}° `
     const pressure = `${weatherOrigin.main.pressure} мм ртутного столба`
     const dayTemp = `${Math.floor(weatherOrigin.main.temp)}°`
     const wind = `${weatherOrigin.wind.speed} м/с`
     const humidity = `Влажность ${weatherOrigin.main.humidity}%`
-
 
     const items = [
         {
@@ -51,14 +54,12 @@ export const Popup = ({ togglePopUp }: Props) => {
         },
     ];
 
-
-
     return (
         <>
             <div className={st.popup} onClick={event => event.stopPropagation}>
                 <div className={st.day}>
                     <div className={st.day__temp}>{dayTemp}</div>
-                    <div className={st.day__name}>Среда</div>
+                    <div className={st.day__name}>{dayName}</div>
                     <div className={st.img}>
                         <GlobalSvgSelector id="sun" />
                     </div>
@@ -78,7 +79,6 @@ export const Popup = ({ togglePopUp }: Props) => {
                     <GlobalSvgSelector id="close" onClick={() => togglePopUp} />
                 </div>
             </div>
-
         </>
     );
 };

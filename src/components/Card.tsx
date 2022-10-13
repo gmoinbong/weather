@@ -6,9 +6,11 @@ import { Popup } from './PopUp';
 
 interface Props {
     day: Day;
+    dayName: string
+    id: number
 }
 
-const Card = ({ day }: Props) => {
+const Card = ({ day, dayName, id }: Props) => {
     const [isOpen, setIsOpen] = useState(false)
     const togglePopUp = () => {
         setIsOpen(!isOpen)
@@ -17,7 +19,7 @@ const Card = ({ day }: Props) => {
 
     return (
         <div className={st.card} onClick={togglePopUp}>
-            {isOpen && <Popup togglePopUp={togglePopUp} />}
+            {isOpen && <Popup id={id} dayName={dayName} togglePopUp={togglePopUp} />}
             <div className={st.day}>{day.day}</div>
             <div className={st.day__info}>{day.day_info}</div>
             <div className={st.img}>
