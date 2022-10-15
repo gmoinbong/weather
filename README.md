@@ -6,3 +6,5 @@ git clone https://github.com/gmoinbong/weather.git
 Стек: typescript, scss, react-redux, rtk, axios. 
 
 Дополнительные библиотеки: JS moment.
+
+Проект: http://actually-weather.rf.gd/
