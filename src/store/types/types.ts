@@ -15,6 +15,10 @@ export type Weather = {
         main?: string
     }],
 }
+export interface PropsOfButtons {
+    activeId: number
+    setActiveId: React.Dispatch<React.SetStateAction<number>>
+}
 export interface Day {
     day: any,
     day_info: string,

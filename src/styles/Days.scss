@@ -1,4 +1,7 @@
 @import './Variables.scss';
+.active {
+  background-color: var(#{--card-background-default});
+}
 .card {
   padding: 8px;
   margin-top: 10px;
@@ -50,28 +53,13 @@
   display: flex;
   justify-content: space-between;
   padding-bottom: 5px;
+  align-items: center;
+  margin-bottom: 20px;
 }
+
 button {
-  border-radius: 5px;
-  :hover {
-    background-color: darken(#f9f9f9, 2%);
-  }
-
-  :active {
-    background-color: darken(#f9f9f9, 5%);
-  }
-
-  .active {
-    background-color: #282828;
-    color: #fff;
-  }
-}
-
-button,
-.cancel {
   border: none;
   color: var(#{--text-color-default});
-  margin: 5px 20px;
   background-color: var(#{--components-background-default});
   box-shadow: $box-shadow;
   border-radius: 5px;
@@ -81,19 +69,23 @@ button,
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
-  margin-bottom: 7px;
+  margin: 10px;
   cursor: pointer;
+  .active {
+    background-color: var(#{--card-background-default});
+  }
   &:hover {
     background-color: var(#{--card-background-default});
   }
 }
-.active {
-  &.active {
-    background-color: #282828;
-    color: #fff;
-  }
-}
+
 .days,
 .img {
   color: var(#{--text-color-default});
+}
+.tabs__wrapper {
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-around;
+  width: 280px;
 }

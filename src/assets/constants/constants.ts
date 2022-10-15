@@ -20,6 +20,10 @@ moment.updateLocale('ru', {
     ]
 });
 
+export const valuesOfTabs = [
+    " На неделю",
+    "Еще 7 дней",
+]
 
 export const day = (count: number) => {
     return moment().add(count, 'days').format('dddd')
@@ -27,4 +31,3 @@ export const day = (count: number) => {
 export const dayInfo = (count: number) => {
     return moment().add(count, 'days').format('D MMMM')
 }
-// export const time = moment().format('HH:mm:ss')

@@ -1,26 +1,24 @@
 import React from 'react'
-import st from '../styles/Days.module.scss'
+import { valuesOfTabs } from '../assets/constants/constants'
+import { PropsOfButtons } from '../store/types/types'
+import '../styles/Days.scss'
 
-const Tab = () => {
-    const values = [
-        " На неделю",
-        "На 14 дней",
-    ]
-    const [activeId, setActiveId] = React.useState(0);
+
+const Tab = ({ activeId, setActiveId }: PropsOfButtons) => {
 
     return (
-        <div className={st.tabs}>
-            <div className={st.tabs__wrapper}>
-                {values.map((text, id) => (
+        <div className='tabs'>
+            <div className='tabs__wrapper'>
+                {valuesOfTabs.map((text, id) => (
                     <button
                         key={id}
                         onClick={() => setActiveId(id)}
-                        className={activeId === id ? 'active' : ''}>
+                        className={activeId === id ? 'active button' : 'button'}>
                         {text}
                     </button>
                 ))}
             </div>
-            <button className={st.cancel}>Отменить</button>
+            <button className='cancel' onClick={() => setActiveId(0)}>Отменить</button>
         </div >)
 
 }
