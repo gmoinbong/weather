@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Days from '../components/Days'
 import Header from '../components/Header'
@@ -11,23 +11,30 @@ import { selectCurrentWeatherData } from '../store/types/selectors'
 
 
 const Home = () => {
+    const [mount, setMount] = useState(false)
     const { weatherOrigin } = useCustomSelector(selectCurrentWeatherData)
     const dispatch = useCustomDispatch()
 
     const fetchWeather = (searchValue: string) => {
         dispatch(fetchCurrentWeather(searchValue));
     };
+    useEffect(() => {
+        if (!mount) {
+            setMount(true);
+            fetchWeather('Киев')
+        }
+    }, [fetchWeather, mount])
 
     return (
-        <div className='home'>
+        <>
             <Header onInputSubmit={fetchWeather} />
             <div className={st.wrapper}>
                 <ThisDay weather={weatherOrigin} />
                 <ThisDayInfo weatherOrigin={weatherOrigin} />
+                <div className={st.day__wrapper}></div>
             </div>
-            <div className={st.day__wrapper}></div>
             <Days />
-        </div>
+        </>
     )
 }
 export default Home

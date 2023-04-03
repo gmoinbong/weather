@@ -63,11 +63,13 @@ export const Popup = ({ togglePopUp, dayName, id }: Props) => {
                     <div className={st.img}>
                         <GlobalSvgSelector id="sun" />
                     </div>
-                    <div className={st.day__time}>
-                        Время: <span>{time}</span>
-                    </div>
-                    <div className={st.day__city}>
-                        Город: <span>{weatherOrigin.name}</span>
+                    <div className={st.info_wrapper}>
+                        <div className={st.day__time}>
+                            Время: <span>{time}</span>
+                        </div>
+                        <div className={st.day__city}>
+                            Город: <span>{weatherOrigin.name}</span>
+                        </div>
                     </div>
                 </div>
                 <div className={st.this__day_info_items}>

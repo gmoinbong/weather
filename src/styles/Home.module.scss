@@ -1,5 +1,11 @@
+.home {
+  height: 800px;
+}
 .wrapper {
+  max-width: 1200px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 40px;
+  width: 100%;
+}
+@media (max-width: 768px) {
 }

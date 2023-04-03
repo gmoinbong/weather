@@ -24,13 +24,13 @@ function ThisDay({ weather }: Props) {
         <div className={st.this__day}>
             <div className={st.block__top}>
                 <div className={st.wrapper}> <div className={st.day__temp}>{dayTemp}
-                    <div className={st.today__title}><span>Сегодня</span></div></div>
+                    <div className={st.today__title}>Сегодня</div></div>
                     <GlobalSvgSelector city={city} id={'sun'} />
                 </div>
             </div>
             <div className={st.block__bottom}>
-                <div className={st.day__time}>Время: {time} </div>
-                <div className={st.day__city}>Город: {city} </div>
+                <div className={st.inf}>Время: {time} </div>
+                <div className={st.inf}>Город: {city} </div>
             </div>
         </div>
     )

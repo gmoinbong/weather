@@ -11,9 +11,10 @@ type Props = {
     id: unknown
     onClick?: () => void
     city?: string
+    className?: string
 }
 
-export const GlobalSvgSelector = ({ id, onClick, city }: Props) => {
+export const GlobalSvgSelector = ({ id, onClick, city, className }: Props) => {
     switch (id) {
         case 'header-logo':
             return (
@@ -25,7 +26,7 @@ export const GlobalSvgSelector = ({ id, onClick, city }: Props) => {
             );
         case 'rain':
             return (
-                <RainIcon />
+                <RainIcon className='svg' />
             );
         case 'small_rain':
             return (
@@ -37,7 +38,7 @@ export const GlobalSvgSelector = ({ id, onClick, city }: Props) => {
             );
         case 'sun':
             return (
-                <SunIcon />
+                <SunIcon className='svg' />
             );
         case 'mainly_cloudy':
             return (

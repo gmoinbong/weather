@@ -28,20 +28,20 @@ const Header: React.FC<HeaderProps> = ({ onInputSubmit }) => {
             <div className={st.wrapper}>
                 <div className={st.logo}>
                     <GlobalSvgSelector id={'header-logo'} />
-                    <div className={st.title}>Actually Weather</div>
+                    <div className={st.title}>Weather</div>
                 </div>
-                <div className={st.wrapper}>
-                    <div className={st.select}>
-                        <div className={st.change__theme} onClick={changeTheme}>
-                            <GlobalSvgSelector id={'change-theme'} />
-                        </div>
-                        <label className={st.inp}>
-                            <input type="text" className={st.inp} placeholder="Введите город.."
-                                onKeyDown={handleKeyDown}
-                                onChange={handleOnChange} />
-                            <span className={st.focusbg}></span>
-                        </label>
+
+                <div className={st.select}>
+                    <div className={st.change__theme} onClick={changeTheme}>
+                        <GlobalSvgSelector id={'change-theme'} />
                     </div>
+                    <label className={st.inp}>
+                        <input type="text" className={st.inp} placeholder="Введите.."
+
+                            onKeyDown={handleKeyDown}
+                            onChange={handleOnChange} />
+                        <span className={st.focusbg}></span>
+                    </label>
                 </div>
             </div>
         </header>
